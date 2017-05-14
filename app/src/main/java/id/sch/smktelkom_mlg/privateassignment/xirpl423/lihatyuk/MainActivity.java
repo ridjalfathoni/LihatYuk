@@ -1,7 +1,9 @@
 package id.sch.smktelkom_mlg.privateassignment.xirpl423.lihatyuk;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -17,7 +19,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+import id.sch.smktelkom_mlg.privateassignment.xirpl423.lihatyuk.Adapter.Source;
+
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, Source.ISource {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -86,6 +90,16 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        return false;
+    }
+
+    @Override
+    public void showArticles(String title, String overview, String poster_path) {
+
+    }
+
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -135,7 +149,12 @@ public class MainActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            if (position == 0)
+                return new Populer();
+            else if (position == 1)
+                return new MulaiSekarang();
+            else
+                return PlaceholderFragment.newInstance(position + 1);
         }
 
         @Override
@@ -148,9 +167,9 @@ public class MainActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "SECTION 1";
+                    return "Pupuler";
                 case 1:
-                    return "SECTION 2";
+                    return "Sekarang Mulai";
                 case 2:
                     return "SECTION 3";
             }
