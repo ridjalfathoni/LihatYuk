@@ -153,6 +153,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 return new Populer();
             else if (position == 1)
                 return new MulaiSekarang();
+            else if (position == 2)
+                return new Teratas();
             else
                 return PlaceholderFragment.newInstance(position + 1);
         }
@@ -171,7 +173,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 case 1:
                     return "Sekarang Mulai";
                 case 2:
-                    return "SECTION 3";
+                    return "Film Teratas";
             }
             return null;
         }
